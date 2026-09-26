@@ -5,6 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import java.util.List;
 
 @Entity
 public class Profile {
@@ -18,6 +20,9 @@ public class Profile {
     private String email;
 
     private String bio;
+
+    @OneToMany(mappedBy = "profile")
+    private List<Project> projects;
 
     public Long getId() {
         return id;
@@ -49,5 +54,13 @@ public class Profile {
 
     public void setBio(String bio) {
         this.bio = bio;
+    }
+
+    public List<Project> getProjects() {
+    return projects;
+    }
+
+    public void setProjects(List<Project> projects) {
+        this.projects = projects;
     }
 }
